@@ -1,0 +1,80 @@
+[
+    {
+        "protocolo": "SP-2026-101",
+        "categoria": "Fios e Cabos Rompidos/Soltos",
+        "bairro": "Jabaquara",
+        "endereco": "Av. Eng. Armando de Arruda Pereira, 1200",
+        "descricao": "Caminhão baú atingiu a fiação aérea. Cabos caídos na calçada próximos ao acesso da estação de metrô.",
+        "risco_choque": true,
+        "nivel_prioridade": 5,
+        "status": "EM_EXECUCAO",
+        "apoios_comunitarios": 12,
+        "data_registro": "04/11/2026 08:30",
+        "foto_evidencia": "evidencia_jabaquara_1200.jpg"
+    },
+    {
+        "protocolo": "SP-2026-102",
+        "categoria": "Poda de Árvore com Risco Elétrico",
+        "bairro": "Vila Mariana",
+        "endereco": "Rua Domingos de Morais, 2180",
+        "descricao": "Galho de grande porte curvado e pressionando cabos de média tensão perto do colégio.",
+        "risco_choque": true,
+        "nivel_prioridade": 5,
+        "status": "EM_VISTORIA",
+        "apoios_comunitarios": 8,
+        "data_registro": "04/11/2026 10:15",
+        "foto_evidencia": "evidencia_vilamariana_2180.jpg"
+    },
+    {
+        "protocolo": "SP-2026-103",
+        "categoria": "Buraco em Via ou Calçada",
+        "bairro": "Saúde",
+        "endereco": "Av. Bosque da Saúde, 420",
+        "descricao": "Cratera aberta na pista da direita após infiltração de chuva, gerando risco de queda para motociclistas.",
+        "risco_choque": false,
+        "nivel_prioridade": 4,
+        "status": "ABERTO",
+        "apoios_comunitarios": 5,
+        "data_registro": "04/11/2026 14:00",
+        "foto_evidencia": "evidencia_saude_420.jpg"
+    },
+    {
+        "protocolo": "SP-2026-104",
+        "categoria": "Tampa de Bueiro Furtada/Quebrada",
+        "bairro": "Bela Vista",
+        "endereco": "Rua Treze de Maio, 850",
+        "descricao": "Boca de lobo aberta sem grade protetora na calçada, risco iminente de acidente com pedestres.",
+        "risco_choque": false,
+        "nivel_prioridade": 5,
+        "status": "ABERTO",
+        "apoios_comunitarios": 7,
+        "data_registro": "05/11/2026 09:20",
+        "foto_evidencia": "evidencia_belavista_850.jpg"
+    },
+    {
+        "protocolo": "SP-2026-105",
+        "categoria": "Descarte Irregular de Entulho",
+        "bairro": "Mooca",
+        "endereco": "Rua da Mooca, 1120",
+        "descricao": "Despejo clandestino de restos de obra e móveis descartados obstruindo completamente a passagem de pedestres.",
+        "risco_choque": false,
+        "nivel_prioridade": 2,
+        "status": "ABERTO",
+        "apoios_comunitarios": 4,
+        "data_registro": "05/11/2026 11:45",
+        "foto_evidencia": "evidencia_mooca_1120.jpg"
+    },
+    {
+        "protocolo": "SP-2026-106",
+        "categoria": "Fios e Cabos Rompidos/Soltos",
+        "bairro": "Vila Mascote",
+        "endereco": "Av. Mascote, 630",
+        "descricao": "Chicote de fiação de telecomunicação rompido e pendurado até a altura do rosto de pedestres.",
+        "risco_choque": false,
+        "nivel_prioridade": 3,
+        "status": "ABERTO",
+        "apoios_comunitarios": 6,
+        "data_registro": "05/11/2026 16:10",
+        "foto_evidencia": "evidencia_vilamascote_630.jpg"
+    }
+]
