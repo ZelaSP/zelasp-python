@@ -25,7 +25,7 @@
   * **Matemática (Differentiated Problem Solving):** Modelagem diferencial da taxa de chegada de incidentes pós-tempestade versus capacidade de resposta da equipe de zeladoria.
   * **Experiência (Software & Total Experience Design):** Slide deck com requisitos funcionais, não funcionais, regras de negócio justificadas, casos de uso e heurísticas de usabilidade.
   * **Pitch (Storytelling & Inspiração Empreendedora):** Videopitch de 3 minutos em 9 etapas e e-mail executivo fundamentando o arquétipo de marca (O Cuidador / O Cidadão).
-* **Indicador de Impacto:** Redução do tempo médio de reporte de 8 minutos (no SP 156) para menos de 30 segundos, com taxa de 0% de duplicidade de chamados no mesmo quarteirão.
+* **Indicador de Impacto:** Redução do tempo médio de relato de 5–8 minutos (estimado no SP 156 tradicional) para **menos de 15 segundos**, com **meta de −45% de chamados duplicados** e **redução simulada de 38,5% no backlog acumulado** (integrada à modelagem DPS).
 * **ODS Conectados:** ODS 11 (Cidades e Comunidades Sustentáveis) e ODS 9 (Indústria, Inovação e Infraestrutura).
 
 ---
