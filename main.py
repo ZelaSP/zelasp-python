@@ -1,6 +1,6 @@
 """
 ========================================================================================
-ZelaSP — Sistema Integrado de Zeladoria Urbana Inteligente
+ZelaSP — Sistema Integrado de Zeladoria Urbana Inteligente (Protótipo CLI Acadêmico)
 Disciplina: Computational Thinking with Python
 Tema: Global Solution 2026.2 · CitizenTech
 Integrantes:
@@ -9,9 +9,10 @@ Integrantes:
 - João Pedro Maschion da Cruz Sá (RM570509)
 - Lucas Henrique Alves da Silva (RM572216)
 ========================================================================================
-Aplicação responsável por processar relatos urbanos (cabos rompidos, buracos, entulho,
-carros abandonados), realizar validações, calcular escores de urgência/risco, agrupar
-demandas comunitárias no mesmo quarteirão e persistir os dados em formato JSON.
+Aplicação responsável por registrar relatos urbanos simulados em terminal (cabos rompidos,
+bueiros, buracos, poda, entulho e carros abandonados), validar entradas, calcular escores
+de prioridade conforme política acadêmica interna, permitir apoio comunitário sem
+duplicar chamados abertos e persistir os dados localmente em arquivo JSON.
 ========================================================================================
 """
 
@@ -82,79 +83,125 @@ def salvar_ocorrencias(caminho_arquivo, lista_ocorrencias):
 
 
 def criar_dados_exemplo():
-    """Gera dados iniciais com cenários reais de São Paulo para testes da aplicação"""
+    """Gera base inicial demonstrativa alinhada à política única de prioridade."""
     return [
         {
             "protocolo": "SP-2026-101",
             "categoria": "Fios e Cabos Rompidos/Soltos",
-            "bairro": "Pinheiros",
-            "endereco": "Rua dos Pinheiros, 450",
-            "descricao": "Caminhão de carga arrancou cabos da rede. Fiação solta rente ao chão na calçada.",
+            "bairro": "Jabaquara",
+            "endereco": "Av. Eng. Armando de Arruda Pereira, 1200",
+            "descricao": "Caminhão baú atingiu a fiação aérea. Cabos caídos na calçada próximos ao acesso da estação de metrô.",
             "risco_choque": True,
             "nivel_prioridade": 5,
             "status": "EM_EXECUCAO",
-            "apoios_comunitarios": 4,
-            "data_registro": "04/11/2026 09:15",
-            "foto_evidencia": "evidencia_pinheiros_450.jpg"
+            "apoios_comunitarios": 12,
+            "data_registro": "04/11/2026 08:30",
+            "foto_demonstracao": ""
         },
         {
             "protocolo": "SP-2026-102",
-            "categoria": "Descarte Irregular de Entulho",
-            "bairro": "Mooca",
-            "endereco": "Rua da Mooca, 1120",
-            "descricao": "Despejo de sofás velhos e sacos de entulho na calçada em frente a terreno baldio.",
-            "risco_choque": False,
-            "nivel_prioridade": 2,
-            "status": "ABERTO",
-            "apoios_comunitarios": 2,
-            "data_registro": "04/11/2026 11:30",
-            "foto_evidencia": "evidencia_mooca_1120.jpg"
+            "categoria": "Poda de Árvore com Risco Elétrico",
+            "bairro": "Vila Mariana",
+            "endereco": "Rua Domingos de Morais, 2180",
+            "descricao": "Galho de grande porte curvado e pressionando cabos de média tensão perto do colégio.",
+            "risco_choque": True,
+            "nivel_prioridade": 5,
+            "status": "EM_VISTORIA",
+            "apoios_comunitarios": 8,
+            "data_registro": "04/11/2026 10:15",
+            "foto_demonstracao": ""
         },
         {
             "protocolo": "SP-2026-103",
             "categoria": "Buraco em Via ou Calçada",
-            "bairro": "Sé",
-            "endereco": "Rua Boa Vista, 85",
-            "descricao": "Cratera na faixa de ônibus causando freadas bruscas de coletivos.",
+            "bairro": "Saúde",
+            "endereco": "Av. Bosque da Saúde, 420",
+            "descricao": "Cratera aberta na pista da direita após infiltração de chuva, gerando risco de queda para motociclistas.",
             "risco_choque": False,
             "nivel_prioridade": 4,
-            "status": "EM_VISTORIA",
-            "apoios_comunitarios": 7,
+            "status": "ABERTO",
+            "apoios_comunitarios": 5,
             "data_registro": "04/11/2026 14:00",
-            "foto_evidencia": "evidencia_se_85.jpg"
+            "foto_demonstracao": ""
+        },
+        {
+            "protocolo": "SP-2026-104",
+            "categoria": "Tampa de Bueiro Furtada/Quebrada",
+            "bairro": "Bela Vista",
+            "endereco": "Rua Treze de Maio, 850",
+            "descricao": "Boca de lobo aberta sem grade protetora na calçada, risco iminente de acidente com pedestres.",
+            "risco_choque": False,
+            "nivel_prioridade": 5,
+            "status": "ABERTO",
+            "apoios_comunitarios": 7,
+            "data_registro": "05/11/2026 09:20",
+            "foto_demonstracao": ""
+        },
+        {
+            "protocolo": "SP-2026-105",
+            "categoria": "Descarte Irregular de Entulho",
+            "bairro": "Mooca",
+            "endereco": "Rua da Mooca, 1120",
+            "descricao": "Despejo clandestino de restos de obra e móveis descartados obstruindo completamente a passagem de pedestres.",
+            "risco_choque": False,
+            "nivel_prioridade": 2,
+            "status": "ABERTO",
+            "apoios_comunitarios": 4,
+            "data_registro": "05/11/2026 11:45",
+            "foto_demonstracao": ""
+        },
+        {
+            "protocolo": "SP-2026-106",
+            "categoria": "Fios e Cabos Rompidos/Soltos",
+            "bairro": "Vila Mascote",
+            "endereco": "Av. Mascote, 630",
+            "descricao": "Chicote de fiação de telecomunicação rompido e pendurado até a altura do rosto de pedestres.",
+            "risco_choque": False,
+            "nivel_prioridade": 3,
+            "status": "RESOLVIDO",
+            "apoios_comunitarios": 6,
+            "data_registro": "05/11/2026 16:10",
+            "foto_demonstracao": ""
         }
     ]
 
 
 # ======================================================================================
-# LÓGICA DE NEGÓCIO E CLASSIFICAÇÃO DE RISCO (ESTRUTURAS DE DECISÃO)
+# LÓGICA DE NEGÓCIO E CLASSIFICAÇÃO DE RISCO (POLÍTICA INTERNA ACADÊMICA)
 # ======================================================================================
 def classificar_faixa_atendimento(nivel_prioridade):
     """
-    Classifica o prazo de atendimento emergencial municipal com base na prioridade (1 a 5).
-    Demonstração obrigatória do encadeamento condicional if / elif / else conforme edital FIAP.
+    Exibe uma faixa de prazo meramente exemplificativa (cenário acadêmico) com base
+    no nível de prioridade (1 a 5), sem representar compromisso oficial de SLA.
     """
     if nivel_prioridade == 5:
-        return "EMERGÊNCIA — Intervenção Imediata (até 2 horas)"
+        return "EMERGÊNCIA (exemplo acadêmico: atendimento imediato em até 2 horas)"
     elif nivel_prioridade == 4:
-        return "URGENTE — Vistoria Prioritária (até 12 horas)"
+        return "PRIORIDADE ALTA (exemplo acadêmico: vistoria prioritária em até 12 horas)"
     elif nivel_prioridade == 3:
-        return "MÉDIO — Programação Regular (até 48 horas)"
+        return "MÉDIO (exemplo acadêmico: programação regular em até 48 horas)"
     elif nivel_prioridade == 2:
-        return "BAIXO — Rota Preventiva (até 5 dias úteis)"
+        return "BAIXO (exemplo acadêmico: rota preventiva em até 5 dias úteis)"
     else:
-        return "MONITORAMENTO — Planejamento Operacional"
+        return "MONITORAMENTO (exemplo acadêmico: planejamento operacional)"
 
 
-def calcular_score_prioridade(categoria, risco_eletrico, via_movimentada):
+def calcular_score_prioridade(categoria, risco_eletrico, apoios=1):
     """
-    Calcula a prioridade operacional (escala 1 a 5) com base em regras de segurança urbana.
-    Usa match/case para classificar a severidade da tipologia.
+    Política interna acadêmica de triagem (escala 1 a 5 — não é classificação oficial):
+    1. Risco elétrico marcado resulta em nível 5 em todas as categorias.
+    2. Sem risco elétrico marcado, aplica a prioridade-base da categoria.
+    3. A partir de 10 apoios comunitários, acrescenta um único nível à base (teto 5).
     """
+    if risco_eletrico:
+        return 5
+
     match categoria:
-        case "Fios e Cabos Rompidos/Soltos" | "Tampa de Bueiro Furtada/Quebrada":
+        case "Tampa de Bueiro Furtada/Quebrada":
+            base = 5
+        case "Buraco em Via ou Calçada":
             base = 4
-        case "Buraco em Via ou Calçada" | "Poda de Árvore com Risco Elétrico":
+        case "Fios e Cabos Rompidos/Soltos" | "Poda de Árvore com Risco Elétrico":
             base = 3
         case "Descarte Irregular de Entulho":
             base = 2
@@ -163,28 +210,36 @@ def calcular_score_prioridade(categoria, risco_eletrico, via_movimentada):
         case _:
             base = 2
 
-    # Agravantes de risco à vida humana
-    if risco_eletrico:
-        base += 1  # Eleva imediatamente para nível crítico
-    if via_movimentada and base < 5:
-        base += 1
+    if apoios >= 10:
+        return min(base + 1, 5)
 
-    return min(base, 5)  # Limita ao teto máximo de 5
+    return base
 
 
 # ======================================================================================
 # FLUXOS DE INTERAÇÃO DO USUÁRIO (VALIDAÇÃO E CAPTURA DE ENTRADAS)
 # ======================================================================================
+def ler_confirmacao_sim_nao(mensagem):
+    """Valida respostas de risco aceitando apenas s, sim, n, não ou nao."""
+    while True:
+        resposta = input(mensagem).strip().lower()
+        if resposta in ("s", "sim"):
+            return True
+        if resposta in ("n", "não", "nao"):
+            return False
+        print("[!] Resposta inválida. Digite apenas 's', 'sim', 'n' ou 'não'.")
+
+
 def obter_opcao_menu():
     """Exibe o menu de opções principal e valida a escolha via match/case"""
     print("\n" + "=" * 65)
     print("           🏙️  ZelaSP — PAINEL DE ZELADORIA URBANA")
     print("=" * 65)
-    print("  [1] Registrar Novo Relato Urbano (com foto e geolocalização)")
+    print("  [1] Registrar Novo Relato Urbano (endereço manual e foto demo)")
     print("  [2] Consultar e Filtrar Ocorrências por Bairro ou Categoria")
-    print("  [3] Apoiar Demanda Existente (Consciência Comunitária / Sem Duplicidade)")
+    print("  [3] Apoiar Demanda Existente (Apoio Manual / Sem Duplicar)")
     print("  [4] Atualizar Status de Atendimento (Vistoria / Execução / Conclusão)")
-    print("  [5] Relatório Executivo de Prioridades Críticas")
+    print("  [5] Relatório Executivo de Chamados de Risco Alto/Crítico")
     print("  [0] Encerrar Sessão")
     print("-" * 65)
     
@@ -239,27 +294,29 @@ def registrar_nova_ocorrencia(lista_ocorrencias):
             break
         print("[!] Endereço muito curto. Seja mais específico para orientar a equipe.")
 
-    # 4. Detalhes de Segurança
-    resposta_eletrica = input("Há fios caídos, faíscas ou poça d'água próxima? (s/n): ").strip().lower()
-    risco_eletrico = (resposta_eletrica == "s" or resposta_eletrica == "sim")
-
-    resposta_via = input("É uma avenida principal ou via de grande circulação? (s/n): ").strip().lower()
-    via_movimentada = (resposta_via == "s" or resposta_via == "sim")
+    # 4. Detalhes de Segurança e Seleção Demonstrativa de Foto
+    risco_eletrico = ler_confirmacao_sim_nao(
+        "Há fios caídos, faíscas ou poça d'água próxima? (s/sim/n/não): "
+    )
 
     descricao = input("Descrição adicional do problema: ").strip()
     if not descricao:
         descricao = "Relato cidadão registrado sem observações complementares."
 
-    foto = input("Nome do arquivo de foto anexado (ex: cabo_quebrado.jpg): ").strip()
-    if not foto:
-        foto = "foto_padrao_evidencia.jpg"
+    print("\n[Foto do local — demonstração]")
+    print("Obs.: O envio da imagem e a localização pela foto estão previstos para uma próxima versão.")
+    foto = input("Nome do arquivo de foto para demonstração (opcional, Enter para omitir): ").strip()
 
     # Geração de protocolo único sequencial
-    proximo_id = len(lista_ocorrencias) + 101
-    protocolo_gerado = f"SP-2026-{proximo_id}"
+    maior_num = 100
+    for item in lista_ocorrencias:
+        partes = str(item.get("protocolo", "")).split("-")
+        if partes and partes[-1].isdigit():
+            maior_num = max(maior_num, int(partes[-1]))
+    protocolo_gerado = f"SP-2026-{maior_num + 1}"
 
-    # Cálculo automatizado de prioridade
-    nivel_prioridade = calcular_score_prioridade(categoria_selecionada, risco_eletrico, via_movimentada)
+    # Cálculo automatizado de prioridade (política interna acadêmica)
+    nivel_prioridade = calcular_score_prioridade(categoria_selecionada, risco_eletrico, apoios=1)
 
     nova_ocorrencia = {
         "protocolo": protocolo_gerado,
@@ -272,14 +329,21 @@ def registrar_nova_ocorrencia(lista_ocorrencias):
         "status": "ABERTO",
         "apoios_comunitarios": 1,
         "data_registro": datetime.now().strftime("%d/%m/%Y %H:%M"),
-        "foto_evidencia": foto
+        "foto_demonstracao": foto
     }
 
     lista_ocorrencias.append(nova_ocorrencia)
+    rotulo_nivel = (
+        "URGÊNCIA MÁXIMA"
+        if nivel_prioridade == 5
+        else ("PRIORIDADE ALTA" if nivel_prioridade == 4 else "Zeladoria Regular")
+    )
     print("\n" + "=" * 60)
-    print(f"✅ Ocorrência registrada com sucesso!")
+    print("✅ Ocorrência registrada com sucesso!")
     print(f"Protocolo Gerado:   {protocolo_gerado}")
-    print(f"Nível de Prioridade: {nivel_prioridade}/5 ({'RISCO CRÍTICO' if nivel_prioridade == 5 else 'Acompanhamento Normal'})")
+    print(f"Nível de Prioridade: {nivel_prioridade}/5 ({rotulo_nivel})")
+    if foto:
+        print(f"Arquivo selecionado para demonstração: {foto}")
     print("=" * 60)
     return True
 
@@ -322,27 +386,51 @@ def listar_e_filtrar_ocorrencias(lista_ocorrencias):
         print(f"Categoria: {oc['categoria']}{alerta_eletrico}")
         print(f"Local:     {oc['endereco']} — {oc['bairro']}")
         print(f"Urgência:  Nível {oc['nivel_prioridade']}/5 | Data: {oc['data_registro']}")
+        foto_demo = oc.get("foto_demonstracao") or ""
+        if foto_demo:
+            print(f"Foto:      Arquivo selecionado para demonstração: {foto_demo}")
         print("-" * 80)
+
+
+def aplicar_apoio_ocorrencia(oc):
+    """
+    Incrementa o contador comunitário e recalcula a prioridade a partir da base.
+    Ocorrências com status RESOLVIDO não recebem novos apoios.
+    """
+    if oc.get("status") == "RESOLVIDO":
+        return False
+
+    oc["apoios_comunitarios"] = oc.get("apoios_comunitarios", 0) + 1
+    oc["nivel_prioridade"] = calcular_score_prioridade(
+        oc["categoria"],
+        oc.get("risco_choque", False),
+        oc["apoios_comunitarios"],
+    )
+    return True
 
 
 def apoiar_ocorrencia_existente(lista_ocorrencias):
     """
-    Consciência comunitária do ZelaSP: o munícipe vê um chamado da mesma rua
-    e manifesta apoio ao invés de duplicar registros idênticos.
+    Apoio manual a ocorrências existentes para incentivar a redução de relatos repetidos.
     """
     protocolo_alvo = input("\nDigite o número do protocolo que deseja apoiar (ex: SP-2026-101): ").strip().upper()
-    
-    encontrado = False
+
     for oc in lista_ocorrencias:
         if oc["protocolo"] == protocolo_alvo:
-            oc["apoios_comunitarios"] += 1
-            encontrado = True
-            print(f"\n🤝 Apoio registrado com sucesso para o protocolo {protocolo_alvo}!")
-            print(f"Total de moradores que endossam essa resolução: {oc['apoios_comunitarios']}.")
-            break
+            if not aplicar_apoio_ocorrencia(oc):
+                print(
+                    f"\n[!] Apoio bloqueado: o protocolo {protocolo_alvo} já está RESOLVIDO. "
+                    f"Contador preservado em {oc['apoios_comunitarios']} apoio(s)."
+                )
+                return False
 
-    if not encontrado:
-        print(f"\n[!] Protocolo '{protocolo_alvo}' não localizado na base.")
+            print(f"\n🤝 Apoio registrado com sucesso para o protocolo {protocolo_alvo}!")
+            print(f"Total de apoios comunitários: {oc['apoios_comunitarios']}.")
+            print(f"Prioridade recalculada:      Nível {oc['nivel_prioridade']}/5.")
+            return True
+
+    print(f"\n[!] Protocolo '{protocolo_alvo}' não localizado na base.")
+    return False
 
 
 def atualizar_status_ocorrencia(lista_ocorrencias):
@@ -385,20 +473,28 @@ def emitir_relatorio_prioridades(lista_ocorrencias):
     criticos = [item for item in lista_ocorrencias if item["nivel_prioridade"] >= 4 and item["status"] != "RESOLVIDO"]
     
     print("\n" + "=" * 65)
-    print("      📊 RELATÓRIO MUNICIPAL DE ATENDIMENTO PRIORITÁRIO")
+    print("      📊 RELATÓRIO DE CHAMADOS DE RISCO ALTO/CRÍTICO (ACADÊMICO)")
     print("=" * 65)
-    print(f"Total de ocorrências cadastradas: {len(lista_ocorrencias)}")
-    print(f"Incidentes Críticos em Aberto:    {len(criticos)}")
+    print(f"Total de ocorrências cadastradas:       {len(lista_ocorrencias)}")
+    print(f"Chamados de risco alto/crítico abertos: {len(criticos)}")
+    print("Nota: prazos abaixo são exemplos acadêmicos e não configuram SLA oficial.")
     print("-" * 65)
 
     if criticos:
-        print("LISTA DE INTERVENÇÃO IMEDIATA (CABOS E RISCOS FÍSICOS):")
-        for c in sorted(criticos, key=lambda x: x["nivel_prioridade"], reverse=True):
+        print("LISTA DE INTERVENÇÃO PRIORITÁRIA (NÍVEIS 4 E 5):")
+        for c in sorted(
+            criticos,
+            key=lambda x: (x["nivel_prioridade"], x.get("apoios_comunitarios", 0)),
+            reverse=True,
+        ):
             prazo = classificar_faixa_atendimento(c["nivel_prioridade"])
-            print(f"-> [{c['protocolo']}] Risco {c['nivel_prioridade']}/5 — {prazo}")
-            print(f"   Local: {c['bairro']} — {c['categoria']} ({c['endereco']})")
+            print(f"-> [{c['protocolo']}] Nível {c['nivel_prioridade']}/5 — {prazo}")
+            print(
+                f"   Local: {c['bairro']} — {c['categoria']} ({c['endereco']}) "
+                f"| Apoios: {c.get('apoios_comunitarios', 0)}"
+            )
     else:
-        print("Nenhum chamado crítico pendente no momento. Malha urbana em conformidade.")
+        print("Nenhum chamado de risco alto/crítico pendente no momento.")
 
 
 # ======================================================================================
