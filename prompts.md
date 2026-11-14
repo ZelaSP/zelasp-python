@@ -13,8 +13,8 @@
 
 ## 1. Ferramentas de IA Utilizadas e Finalidades
 
-* **Google Antigravity (Gemini 3.8 Flash):** Utilizado como copiloto de raciocínio de engenharia de software para ideação da estrutura do menu, desenho de casos de teste de exceções (`try/except`) e validação dos critérios acadêmicos do edital da FIAP.
-* **Claude / ChatGPT (Análise Conceitual):** Utilizado em sessões prévias para pesquisa sobre tratamento assintótico de algoritmos de busca e ordenação.
+* **Google Antigravity (Gemini & Claude):** Utilizado como copiloto de raciocínio de engenharia de software para ideação da estrutura do menu, desenho de casos de teste de exceções (`try/except`), validação dos critérios acadêmicos do edital da FIAP e implementação das correções da revisão final (`ler_confirmacao_sim_nao`, regra única de prioridade, JSON de exemplo e documentação).
+* **ChatGPT / Codex (OpenAI):** Utilizado em sessões prévias para análise conceitual de algoritmos e, na etapa de revisão final, para a auditoria cruzada que originou o plano de ajustes (unificação da regra de prioridade entre Python/Web/TX, validação estrita `s/sim/n/não`, bloqueio de apoio em `RESOLVIDO` e remoção de `via_movimentada`).
 
 ---
 
@@ -37,9 +37,9 @@
    * *Sugestão da IA:* A IA sugeriu gravar os dados imediatamente após cada operação de adição ou edição.
    * *Ajuste do Grupo:* O grupo adicionou a verificação prévia com `os.path.exists()` e um gerador de base demonstrativa (`criar_dados_exemplo()`), alinhado aos 6 bairros de São Paulo e à tabela única de prioridade para garantir inicialização limpa caso o arquivo JSON ainda não exista.
 2. **Apoio Comunitário Manual com Recálculo e Bloqueio (`aplicar_apoio_ocorrencia` e `apoiar_ocorrencia_existente`):**
-   * *Desenvolvimento da Equipe:* Além de permitir apoiar chamados já cadastrados para incentivar a redução de relatos repetidos, a equipe implementou o bloqueio para ocorrências com status `RESOLVIDO` (preservando o contador) e o recálculo automático da prioridade a partir da base quando a contagem atinge 10 apoios.
+   * *Desenvolvimento e Revisão (Grupo + ChatGPT/Codex + Antigravity):* Além de permitir apoiar chamados já cadastrados para incentivar a redução de relatos repetidos, implementamos a partir do plano de revisão o bloqueio para ocorrências com status `RESOLVIDO` (preservando o contador) e o recálculo automático da prioridade a partir da base quando a contagem atinge 10 apoios.
 3. **Validação Estrita de Risco e Seleção Demonstrativa de Foto:**
-   * *Ajuste do Grupo:* Criamos a função `ler_confirmacao_sim_nao()` exigindo respostas válidas (`s`, `sim`, `n`, `não`, `nao`) antes de calcular a prioridade, e ajustamos o campo de foto apenas como registro demonstrativo do nome escolhido (sem enviar, armazenar imagens reais ou inventar nomes padrão).
+   * *Ajuste da Revisão:* Implementamos a função `ler_confirmacao_sim_nao()` exigindo respostas válidas (`s`, `sim`, `n`, `não`, `nao`) antes de calcular a prioridade, removemos `via_movimentada` e ajustamos o campo de foto apenas como registro demonstrativo do nome escolhido (sem enviar, armazenar imagens reais ou inventar nomes padrão).
 4. **Menu com `match/case`:**
    * A equipe implementou a sintaxe moderna do Python 3.10+, substituindo cadeias longas de `if/elif` no roteamento das opções principais do sistema e na tabela de categorias.
 
